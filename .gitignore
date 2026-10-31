@@ -1,0 +1,11 @@
+*.zip
+*.env
+.env.*
+__pycache__/
+.DS_Store
+
+# Protect local Wazuh installation bundles and credentials
+wazuh-install-files.tar
+*.pem
+*.key
+.env
