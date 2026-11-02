@@ -23,6 +23,8 @@ Lab write-ups migrated from the **published EB Practice Lab Google Sites export*
 
 [Wazuh XDR/SIEM — Ubuntu Server Installation & Windows 11 Agent Onboarding](labs/wazuh-siem/README.md) — 17 screenshots covering VirtualBox networking, SSH access, installation troubleshooting, the Wazuh dashboard, Windows agent registration, and initial event collection. Sysmon and custom detection testing remain future work.
 
+**New:** [Windows Process Creation & PowerShell Script Block Logging](labs/wazuh-siem/process-creation-and-powershell-logging/README.md) — additional Windows auditing, Wazuh PowerShell event-channel collection, GUI policy alternatives, and verified command-line / MITRE-mapped telemetry.
+
 ## Background
 
 The original portfolio also includes an [About page](ABOUT.md) and [Home page content](source-home-content.md).
