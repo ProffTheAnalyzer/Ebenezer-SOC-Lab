@@ -8,6 +8,8 @@
 
 ![Wazuh overview showing one connected Windows endpoint](screenshots/15-wazuh-overview-one-active-agent.png)
 
+> **Next lab:** [Enable Windows Process Creation Auditing & PowerShell Script Block Logging](process-creation-and-powershell-logging/README.md) — Windows Event IDs 4688/4104, endpoint audit policies, Wazuh event-channel collection, and validation in Discover.
+
 ## Objectives
 
 - Build a self-hosted security monitoring environment using Wazuh's SIEM/XDR capabilities.
