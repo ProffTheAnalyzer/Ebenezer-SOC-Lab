@@ -1,6 +1,6 @@
 # Wazuh XDR/SIEM Lab — Ubuntu Server & Windows 11 Agent Onboarding
 
-**Project status:** Initial deployment and Windows endpoint telemetry ingestion completed; Sysmon integration and deeper detection exercises planned.  
+**Project status:** Initial deployment and Windows endpoint telemetry ingestion completed.  
 **Lab platform:** Oracle VirtualBox | Ubuntu Server VM | Windows 11 Pro VM | Wazuh 4.14 installation series  
 **Captured:** October 30–31, 2026
 
@@ -19,7 +19,7 @@
 - Connect to the Ubuntu server from my physical Windows host through SSH.
 - Register and validate a Wazuh agent on a Windows 11 virtual machine.
 - Examine initial security alerts, endpoint details, and ingested Windows event telemetry.
-- Prepare the environment for later Sysmon integration, threat hunting, and detection testing.
+- Establish an endpoint monitoring baseline for subsequent Windows logging and alert-forwarding labs.
 
 ## Lab environment
 
@@ -96,9 +96,9 @@ curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh && sudo bash ./wazuh-i
 
 The `-a` option starts the all-in-one installation path. The installer output shows installation and initialization of the **Wazuh indexer**, **Wazuh manager**, **Filebeat**, and **Wazuh dashboard**.
 
-**Troubleshooting encountered:** My first captured attempt reached dashboard installation but ended with a **Wazuh dashboard installation failed** message. The assistant then removed the partially installed components. A subsequent installation attempt completed successfully. The screenshots do not establish the root cause of the first attempt, so I have left that unresolved rather than inventing a fix.
+**Troubleshooting encountered:** My first captured attempt reached dashboard installation but ended with a **Wazuh dashboard installation failed** message. The assistant then removed the partially installed components. A subsequent installation attempt completed successfully.
 
-The successful run displayed the dashboard URL, admin username, and an automatically generated password. **The password is redacted in the accompanying screenshot**, and it should be rotated following its exposure in the original installation capture.
+The successful run displayed the dashboard URL, admin username, and an automatically generated password.
 
 <details>
 <summary>View installation and troubleshooting screenshots</summary>
@@ -122,7 +122,7 @@ After installation, I used the VirtualBox dashboard port forward and visited:
 https://127.0.0.1:8443
 ```
 
-The Wazuh login page loaded, and I was able to authenticate and reach the overview dashboard. Before the Windows agent was onboarded, one screenshot showed **no registered agents**. Security-alert counts were already visible in that view, but this screenshot alone does not establish which component generated them.
+The Wazuh login page loaded, and I was able to authenticate and reach the overview dashboard.
 
 <details>
 <summary>View dashboard login and initial state</summary>
@@ -190,27 +190,20 @@ On the endpoint details page, the **Security Configuration Assessment** panel sh
 | Enroll a Windows 11 VM | **Completed:** Agent `001` reported active |
 | Verify event ingestion | **Completed:** Windows records visible in Discover |
 | Explore security posture panels | **Observed:** MITRE mappings, vulnerability panel, and SCA benchmark results visible |
-| Integrate Sysmon | **Planned, not completed** |
-| Test custom detection or active response | **Planned, not completed** |
 
 **Key takeaways:** Wazuh gave me a functional open-source environment for endpoint visibility and SIEM investigation. The deployment also exposed a few practical configuration challenges: an SSH connection error, an unsuccessful first installer run, and the need to distinguish platform-generated alerts from actionable security incidents. I verified ingestion before moving on to deeper hunting or custom rules.
 
-## 8. Next steps
+## 8. Continuing the lab
 
-1. Install **Sysmon** on the Windows VM and configure the Wazuh agent to collect its operational event channel.
-2. Validate Sysmon events (including process creation and network connection events) in Discover.
-3. Run controlled detection tests, document what telemetry is produced, and check whether existing Wazuh rules fire.
-4. Explore rule tuning, custom rules, MITRE ATT&CK mapping, and response integrations **after** baseline event collection is validated.
-5. Add dedicated investigation write-ups for completed tests.
+With the Wazuh server, Windows agent, and initial event collection working, I continued with these hands-on labs:
+
+1. **[Windows Process Creation Auditing & PowerShell Script Block Logging](process-creation-and-powershell-logging/README.md)** — enabled process creation and command-line auditing (Event ID 4688), PowerShell Script Block Logging (Event ID 4104), and verified the additional activity in Wazuh Discover.
+2. **[Wazuh Alert Forwarding to Discord](discord-alert-forwarding/README.md)** — created a private Discord alert channel, implemented the Python `custom-discord` integration, and validated delivery of level-10 SSH and PAM alerts.
 
 ## References
 
 - [Wazuh official website](https://wazuh.com/)
 - [Wazuh installation documentation](https://documentation.wazuh.com/current/installation-guide/index.html)
 - [Wazuh Quickstart](https://documentation.wazuh.com/current/quickstart.html)
-
----
-
-**Publication safety:** Screenshots depict a personal lab. The image of the successful installer run has an admin password redacted. Rotate the installer-generated administrator password following its exposure in an original screenshot. Do not commit the unredacted capture or installer credential bundle. Do not commit the unredacted source screenshot or installer credential bundle.
 
 [Back to SOC Lab portfolio](../../README.md)
