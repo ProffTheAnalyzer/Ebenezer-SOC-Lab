@@ -1,18 +1,14 @@
 # Lab Setup & VM Onboarding
 
-**Original page title:** Lab Setup & VM Onboarding (May, 2026)  
-**Date shown on original site:** May 2026  
-**Evidence:** 35 screenshots from the published site
-
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
+**Lab date:** May 2026  
+**Evidence:** 35 screenshots
 
 ## Background
 
 I previously had a configured VM, but I provisioned a completely new one after migrating from Hyper-V to Oracle VirtualBox, which I am more familiar with. I have fully documented this new setup process.
 
-Descriptions Below Screenshots
 
-## Original lab write-up
+## Lab write-up
 
 **Objective:** Establish a baseline SOC environment by bridging on-premises or virtualized assets into the Microsoft security ecosystem.
 
@@ -21,7 +17,7 @@ Descriptions Below Screenshots
 - **Log Management:** Configured Data Collection Rules (DCR) to filter and route specific Windows Event and Security logs into Microsoft Sentinel for centralized SIEM analytics.
 - **Identity & Access:** Connected the environment to Entra ID to establish a unified identity and access management baseline.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 35 screenshots</summary>

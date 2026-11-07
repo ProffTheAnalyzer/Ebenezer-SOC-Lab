@@ -1,12 +1,9 @@
 # Atomic Red Team Simulation & Detection
 
-**Original page title:** Atomic Red Team Simulation & Detection (May, 2026)  
-**Date shown on original site:** May 2026  
-**Evidence:** 14 screenshots from the published site
+**Lab date:** May 2026  
+**Evidence:** 14 screenshots
 
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
-
-## Original lab write-up
+## Lab write-up
 
 **Objective:** Generate realistic threat telemetry to test and validate Defender’s out-of-the-box and custom detection logic.
 
@@ -14,7 +11,7 @@
 - **Adversary Emulation:** Deployed targeted simulations mapped directly to the MITRE ATT&CK framework, specifically executing Persistence (T1547.001) and Credential Access (T1555) techniques.
 - **Outcome:** The simulations successfully executed, generating the necessary telemetry to trigger a multi-stage incident within Defender for triage and analysis.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 14 screenshots</summary>

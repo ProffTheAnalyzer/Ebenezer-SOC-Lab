@@ -1,12 +1,9 @@
 # Basic Sentinel Playbooks via Logic Apps
 
-**Original page title:** Basic PlayBook Automations via Logic Apps in Sentinel (March, 2026)  
-**Date shown on original site:** March 2026  
-**Evidence:** 15 screenshots from the published site
+**Lab date:** March 2026  
+**Evidence:** 15 screenshots
 
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
-
-## Original lab write-up
+## Lab write-up
 
 **Objective:** Implement basic Security Orchestration, Automation, and Response (SOAR) workflows to reduce manual triage fatigue and accelerate incident response times.
 
@@ -16,7 +13,7 @@
 
 I need to practice some more, but I wanted to get initial hands-on experience about automating these and its capabilities.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 15 screenshots</summary>

@@ -1,12 +1,8 @@
 # Cloud Storage Phishing — Email Header & Payload Analysis
 
-**Original page title:** Email Header Analysis -  Cloud Storage Phishing Email leads to credential harvesting & potential identity theft  
-**Date shown on original site:** Not specified  
-**Evidence:** 15 screenshots from the published site
+**Evidence:** 15 screenshots
 
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
-
-## Original lab write-up
+## Lab write-up
 
 **Objective:** To conduct a comprehensive analysis of a suspicious "Billing Failure" email by analyzing raw SMTP headers to identify the originating infrastructure, and securely detonating the embedded payload within an isolated sandbox environment to map the complete attack chain and adversary objectives.
 
@@ -35,7 +31,7 @@ The analysis revealed a sophisticated, multi-stage redirection scheme, designed 
 - **Stage 3 (Credential Harvesting):** Clicking the payment button initiated a redirect to a highly convincing, spoofed PayPal portal. The site was engineered to capture data regardless of user action; both the "Sign In" and "Create an Account" workflows immediately prompted the victim for Personally Identifiable Information (PII), billing addresses, and full bank/credit card details.
 - Conclusion This campaign demonstrates a well-orchestrated credential harvesting operation. By combining psychological urgency with obfuscated routing and multi-stage redirects, the adversary aimed to bypass email security gateways to commit identity theft and financial fraud.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 15 screenshots</summary>

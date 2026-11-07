@@ -1,12 +1,8 @@
 # Email Policies & Threat Protection
 
-**Original page title:** Configuring Email Policies & Threat Protection  
-**Date shown on original site:** Not specified  
-**Evidence:** 21 screenshots from the published site
+**Evidence:** 21 screenshots
 
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
-
-## Original lab write-up
+## Lab write-up
 
 **Objective:** Harden email infrastructure against phishing campaigns using Defender for Office 365.
 
@@ -15,7 +11,7 @@
 - **Live Testing:** Emulated an external threat actor by sending a sample scam-themed email containing a test link. The engineered rules successfully detected the anomaly and routed the threat directly to the junk folder.
 - **Posture Hardening:** Leveraged the Configuration Analyzer to audit the current email environment against strict security baselines, systematically applying recommended actions to continuously strengthen the perimeter.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 21 screenshots</summary>

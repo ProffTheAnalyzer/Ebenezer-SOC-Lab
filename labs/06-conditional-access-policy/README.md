@@ -1,12 +1,9 @@
 # Conditional Access Policy Test
 
-**Original page title:** Conditonal Access Policy Test (May, 2026)  
-**Date shown on original site:** May 2026  
-**Evidence:** 22 screenshots from the published site
+**Lab date:** May 2026  
+**Evidence:** 22 screenshots
 
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
-
-## Original lab write-up
+## Lab write-up
 
 **Objective:** Test Zero Trust access controls and evaluate how identity signals are processed to prevent unauthorized access.
 
@@ -15,7 +12,7 @@
 - **Outcome:** The authentication was successfully blocked post-credential entry. This demonstrates how conditional access mitigates risks like Adversary-in-the-Middle (AiTM) attacks or stolen session cookies by enforcing environmental constraints regardless of valid credentials.
 - **Detection Bonus:** The rapid shift in geography between my actual location (United States) and the VPN node (Germany) successfully triggered a custom "Impossible Travel" analytic rule I had previously engineered in Sentinel.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 22 screenshots</summary>

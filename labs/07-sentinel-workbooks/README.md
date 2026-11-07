@@ -1,19 +1,15 @@
 # Microsoft Sentinel Workbooks
 
-**Original page title:** Azure Sentinel Workbooks  
-**Date shown on original site:** Not specified  
-**Evidence:** 9 screenshots from the published site
+**Evidence:** 9 screenshots
 
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
-
-## Original lab write-up
+## Lab write-up
 
 **Objective:** Build dynamic, visual dashboards to accelerate threat hunting and log analysis by transforming raw SIEM telemetry into actionable intelligence.
 
 - **The Framework:** Azure Workbooks provide a highly flexible canvas for complex data analysis and visual reporting directly within the Microsoft Sentinel environment.
 - **Dashboard Engineering:** Instead of manually querying raw logs for every investigation, I made custom workbooks to visualize security metrics. Specifically, I developed dashboards tracking ActionTypes within DeviceEvents and aggregated event counts for broad Windows SecurityEvents.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 9 screenshots</summary>

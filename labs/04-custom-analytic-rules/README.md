@@ -1,12 +1,9 @@
 # Custom Analytic Rule & Detection
 
-**Original page title:** Custom Analytic Rule & Detection (March 2026)  
-**Date shown on original site:** March 2026  
-**Evidence:** 19 screenshots from the published site
+**Lab date:** March 2026  
+**Evidence:** 19 screenshots
 
-> **Migration note:** Text and image order are transcribed from the PUBLISHED Google Sites export dated October 30, 2026. The original lab conclusions are preserved as written and have not been independently revalidated. Review screenshots for personal or sensitive data before publishing.
-
-## Original lab write-up
+## Lab write-up
 
 **Objective:** Engineer custom detection logic to capture specific activities and rapid-fire events for lab testing and analysis.
 
@@ -16,7 +13,7 @@
 
 Initially, I need some rapid alerts so I created some custom alerts for browser downloads and any account sign-in attempts.
 
-## Screenshots (original order)
+## Screenshots
 
 <details>
 <summary>Show all 19 screenshots</summary>
