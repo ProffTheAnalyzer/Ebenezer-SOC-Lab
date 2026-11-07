@@ -19,27 +19,18 @@ Lab write-ups migrated from the **published EB Practice Lab Google Sites export*
 | [Microsoft Sentinel Workbooks](labs/07-sentinel-workbooks/README.md) | Not specified | 9 |
 | [Email Policies & Threat Protection](labs/08-defender-email-threat-protection/README.md) | Not specified | 21 |
 
-## Wazuh SIEM/XDR Lab
+## Wazuh SIEM/XDR Labs
 
-[Wazuh XDR/SIEM — Ubuntu Server Installation & Windows 11 Agent Onboarding](labs/wazuh-siem/README.md) — 17 screenshots covering VirtualBox networking, SSH access, installation troubleshooting, the Wazuh dashboard, Windows agent registration, and initial event collection. Sysmon and custom detection testing remain future work.
-
-**New:** [Windows Process Creation & PowerShell Script Block Logging](labs/wazuh-siem/process-creation-and-powershell-logging/README.md) — additional Windows auditing, Wazuh PowerShell event-channel collection, GUI policy alternatives, and verified command-line / MITRE-mapped telemetry.
+| Lab | Focus | Screenshots |
+| --- | --- | ---: |
+| [Ubuntu Wazuh Deployment & Windows 11 Onboarding](labs/wazuh-siem/README.md) | VirtualBox setup, SSH, Wazuh manager/dashboard, Windows agent, initial telemetry | 17 |
+| [Windows Process Creation & PowerShell Logging](labs/wazuh-siem/process-creation-and-powershell-logging/README.md) | Windows 4688 and PowerShell 4104 event collection, command-line visibility, MITRE-mapped telemetry | 9 |
+| [Forwarding Wazuh Alerts to Discord](labs/wazuh-siem/discord-alert-forwarding/README.md) | Private alert channel, Python webhook integration, level-10 SSH/PAM detections, end-to-end verification | 21 |
 
 ## Background
 
 The original portfolio also includes an [About page](ABOUT.md) and [Home page content](source-home-content.md).
 
-## Publication checks
-
-- Review every screenshot for identities, tenant IDs, email addresses, IPs, credentials, access tokens, internal hostnames and other details you do not want searchable on GitHub.
-- Verify any documented claims and references before treating them as production guidance.
-- Do not upload a real `.env`, password, API key, tenant secret, or live configuration file.
-- Keep the original Google Sites Takeout archive in private backups. The eight migrated labs use PUBLISHED content and exclude Google Sites HTML/JavaScript wrappers.
-
 ## Original public website
 
 [EB Practice Lab](https://www.ebpracticelab.org/)
-
-## Documentation workflow
-
-New labs use [LAB_TEMPLATE.md](LAB_TEMPLATE.md). Add a short project overview, tested setup and troubleshooting steps, supporting screenshots, observed security telemetry, and next steps. Wazuh installer credentials and other secrets are excluded from this public portfolio.
