@@ -122,8 +122,6 @@ After the changes, I used benign discovery and PowerShell test commands to verif
 - A PowerShell `-EncodedCommand` example from lab testing
 - `notepad.exe` opening the Wazuh agent configuration file
 
-These examples establish that **process and command-line data was visible** in the interface. Event ID 4688 and PowerShell Event ID 4104 should be inspected in their respective event details when verifying individual records; a command line alone does not prove which source event produced a given alert.
-
 ![Command-line and PowerShell execution visibility in Discover](screenshots/08-discover-command-line-visibility.png)
 
 ![Further process and encoded PowerShell command visibility](screenshots/07-discover-process-and-powershell-events.png)
@@ -155,12 +153,13 @@ The lab successfully improved the Windows telemetry available for Wazuh investig
 
 The main lesson was that **SIEM visibility depends on both endpoint audit policy and sensor/agent collection configuration**. Enabling a Windows log is not the same as confirming that the SIEM has ingested and indexed it.
 
-## 8. Next steps
+## 8. Continuing the lab: Forwarding Wazuh alerts to Discord
 
-- Install and configure **Sysmon** on the Windows 11 VM.
-- Validate Sysmon event ingestion, including process creation (Sysmon Event ID 1), network connections, and other relevant events.
-- Test additional benign commands and examine parent/child process relationships.
-- Tune noisy Wazuh rules and build repeatable threat-hunting exercises.
+After enabling additional Windows logging and reviewing the telemetry in Wazuh, I continued by setting up **automatic Wazuh alert forwarding to Discord**.
+
+I created a private `#wazuh-alerts` channel, configured a Python `custom-discord` integration on the Ubuntu Wazuh manager, and validated notifications for level-10 SSH and PAM authentication alerts.
+
+**[Read the next lab: Wazuh SIEM/XDR — Forwarding Security Alerts to Discord](../discord-alert-forwarding/README.md)**
 
 ---
 
