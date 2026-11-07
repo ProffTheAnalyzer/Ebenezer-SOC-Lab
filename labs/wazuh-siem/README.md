@@ -10,6 +10,8 @@
 
 > **Next lab:** [Enable Windows Process Creation Auditing & PowerShell Script Block Logging](process-creation-and-powershell-logging/README.md) — Windows Event IDs 4688/4104, endpoint audit policies, Wazuh event-channel collection, and validation in Discover.
 
+> **Additional lab:** [Forward Wazuh Alerts to Discord](discord-alert-forwarding/README.md) — private Discord alert channel, Python integration, and confirmed level-10 SSH/PAM alerts.
+
 ## Objectives
 
 - Build a self-hosted security monitoring environment using Wazuh's SIEM/XDR capabilities.

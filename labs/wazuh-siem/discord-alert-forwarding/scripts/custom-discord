@@ -1,0 +1,47 @@
+#!/usr/bin/python3
+import json
+import sys
+import urllib.request
+import urllib.error
+
+try:
+    with open(sys.argv[1], encoding="utf-8") as f:
+        alert = json.load(f)
+
+    webhook = sys.argv[3]
+    rule = alert.get("rule", {})
+    agent = alert.get("agent", {})
+
+    message = (
+        "**Wazuh Alert**\n"
+        f"**Agent:** {agent.get('name', 'Manager')}\n"
+        f"**Level:** {rule.get('level', 'Unknown')}\n"
+        f"**Rule ID:** {rule.get('id', 'Unknown')}\n"
+        f"**Description:** {rule.get('description', 'No description')}\n"
+        f"**Time:** {alert.get('timestamp', 'Unknown')}"
+    )
+
+    payload = {
+        "content": message[:1900],
+        "allowed_mentions": {"parse": []}
+    }
+
+    request = urllib.request.Request(
+        webhook,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "Wazuh-Discord-Integration/1.0"
+        },
+        method="POST"
+    )
+
+    with urllib.request.urlopen(request, timeout=15) as response:
+        print(f"Discord HTTP status: {response.status}")
+
+except urllib.error.HTTPError as error:
+    print(f"Discord HTTP error: {error.code}", file=sys.stderr)
+    sys.exit(1)
+except Exception as error:
+    print(f"Integration failed: {type(error).__name__}", file=sys.stderr)
+    sys.exit(1)
