@@ -37,5 +37,5 @@ The original portfolio also includes an [About page](ABOUT.md) and [Home page co
 
 ---
 
-**Cyber Profezzor — YouTube Channel**  
+**[Cyber Profezzor — YouTube Channel](https://www.youtube.com/@thecyberprofezzor)**  
 Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

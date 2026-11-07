@@ -210,5 +210,5 @@ With the Wazuh server, Windows agent, and initial event collection working, I co
 
 ---
 
-**Cyber Profezzor — YouTube Channel**  
+**[Cyber Profezzor — YouTube Channel](https://www.youtube.com/@thecyberprofezzor)**  
 Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

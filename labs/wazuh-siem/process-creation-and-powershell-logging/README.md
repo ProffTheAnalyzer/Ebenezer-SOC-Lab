@@ -167,5 +167,5 @@ I created a private `#wazuh-alerts` channel, configured a Python `custom-discord
 
 ---
 
-**Cyber Profezzor — YouTube Channel**  
+**[Cyber Profezzor — YouTube Channel](https://www.youtube.com/@thecyberprofezzor)**  
 Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

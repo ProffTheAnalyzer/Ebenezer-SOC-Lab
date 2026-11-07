@@ -105,5 +105,5 @@ Initially, I need some rapid alerts so I created some custom alerts for browser 
 
 ---
 
-**Cyber Profezzor — YouTube Channel**  
+**[Cyber Profezzor — YouTube Channel](https://www.youtube.com/@thecyberprofezzor)**  
 Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.
