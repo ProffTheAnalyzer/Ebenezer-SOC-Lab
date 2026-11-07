@@ -3,6 +3,7 @@ import json
 import sys
 import urllib.request
 import urllib.error
+import urllib.parse
 
 try:
     with open(sys.argv[1], encoding="utf-8") as f:
@@ -11,6 +12,23 @@ try:
     webhook = sys.argv[3]
     rule = alert.get("rule", {})
     agent = alert.get("agent", {})
+
+    # Build a filtered Wazuh Discover link
+    rule_id = str(rule.get("id", ""))
+    agent_name = str(agent.get("name", "Manager"))
+
+    query = f'rule.id: "{rule_id}" AND agent.name: "{agent_name}"'
+    encoded_query = urllib.parse.quote(query, safe=":.-")
+
+    dashboard_url = (
+        "https://127.0.0.1:8443/app/data-explorer/discover#?"
+        "_a=(discover:(columns:!(_source),isDirty:!f,sort:!()),"
+        "metadata:(indexPattern:'wazuh-alerts-*',view:discover))"
+        "&_g=(filters:!(),refreshInterval:(pause:!t,value:0),"
+        "time:(from:now-7d,to:now))"
+        "&_q=(filters:!(),query:(language:kuery,query:'"
+        + encoded_query + "'))"
+    )
 
     message = (
         "**Wazuh Alert**\n"
@@ -23,6 +41,12 @@ try:
 
     payload = {
         "content": message[:1900],
+        "embeds": [
+            {
+                "title": "View Alert in Wazuh Discover",
+                "url": dashboard_url
+            }
+        ],
         "allowed_mentions": {"parse": []}
     }
 

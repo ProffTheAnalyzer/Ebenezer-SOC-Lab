@@ -25,7 +25,7 @@ Lab write-ups migrated from the **published EB Practice Lab Google Sites export*
 | --- | --- | ---: |
 | [Ubuntu Wazuh Deployment & Windows 11 Onboarding](labs/wazuh-siem/README.md) | VirtualBox setup, SSH, Wazuh manager/dashboard, Windows agent, initial telemetry | 17 |
 | [Windows Process Creation & PowerShell Logging](labs/wazuh-siem/process-creation-and-powershell-logging/README.md) | Windows 4688 and PowerShell 4104 event collection, command-line visibility, MITRE-mapped telemetry | 9 |
-| [Forwarding Wazuh Alerts to Discord](labs/wazuh-siem/discord-alert-forwarding/README.md) | Private alert channel, Python webhook integration, level-10 SSH/PAM detections, end-to-end verification | 21 |
+| [Forwarding Wazuh Alerts to Discord](labs/wazuh-siem/discord-alert-forwarding/README.md) | Private alert channel, Python webhook integration, level-10 SSH/PAM detections, clickable Discover investigation links | 24 |
 
 ## Background
 

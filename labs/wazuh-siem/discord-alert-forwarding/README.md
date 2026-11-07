@@ -2,10 +2,10 @@
 
 **Lab status:** Completed and validated with live Wazuh SSH/PAM detection alerts  
 **Platform:** Wazuh manager on Ubuntu Server · Discord webhook · custom integration  
-**Evidence captured:** November 6, 2026  
+**Evidence captured:** November 6–7, 2026  
 **Previous lab:** [Wazuh installation and Windows 11 agent onboarding](../README.md) · [Process Creation and PowerShell Script Block Logging](../process-creation-and-powershell-logging/README.md)
 
-> **Project summary:** After deploying Wazuh and enabling additional Windows event logging, I configured an integration to forward selected Wazuh security alerts into a Discord text channel. I created a Discord server and dedicated alert channel, tested webhook delivery from my Ubuntu server, configured a Wazuh custom integration named `custom-discord`, and validated automatic delivery of Wazuh **level-10 SSH and PAM correlation alerts** after a controlled login-failure simulation.
+> **Project summary:** After deploying Wazuh and enabling additional Windows event logging, I configured an integration to forward selected Wazuh security alerts into a Discord text channel. I created a Discord server and dedicated alert channel, tested webhook delivery from my Ubuntu server, configured a Wazuh custom integration named `custom-discord`, and validated automatic delivery of Wazuh **level-10 SSH and PAM correlation alerts** after a controlled login-failure simulation. I later enhanced the Python integration with clickable Discord links that open Wazuh Discover already filtered to the corresponding alert rule and agent.
 
 ![Successful SSH and PAM Wazuh alerts forwarded automatically to Discord](screenshots/20-live-ssh-alerts-delivered-to-discord.png)
 
@@ -327,13 +327,102 @@ Both alerts identified the Wazuh Ubuntu manager as `ebpracticelab-u`, included a
 
 During initial testing, level-10 alerts were generated but Discord received nothing. Wazuh's `ossec.log` showed the integration being invoked but failing with `URLError`; Ubuntu also failed to resolve external hostnames. Restoring working DNS resolution for the Ubuntu VM using the **VirtualBox NAT DNS service (`10.0.2.3`)** resolved the connectivity issue, and the next live SSH test reached Discord successfully. If notifications stop arriving, check **DNS resolution, outbound HTTPS, and Wazuh integration logs** before changing detection thresholds or rules. This temporary DNS change should be made persistent separately if needed.
 
-## 9. Lessons learned
+## 9. Improve triage with clickable Wazuh Discover links
+
+The original Discord integration forwarded the **agent, rule level, rule ID, description, and timestamp**, but the notification had no clickable link back to Wazuh. Investigating an alert meant opening Discover and manually searching for the matching rule and agent.
+
+To streamline this workflow, I **edited the existing Python `custom-discord` script** at `/var/ossec/integrations/custom-discord`. I kept the existing webhook and the `<level>10</level>` integration threshold; no new webhook or Wazuh integration was needed.
+
+### Back up and edit the existing script
+
+```bash
+sudo cp -p /var/ossec/integrations/custom-discord /root/custom-discord-backup
+sudo nano /var/ossec/integrations/custom-discord
+```
+
+I added `import urllib.parse` alongside the existing imports, then constructed a Wazuh Discover URL using the **rule ID** and **agent name** from each alert's JSON. The URL structure was based on a working Discover search from this lab:
+
+```python
+# Build a filtered Wazuh Discover link
+rule_id = str(rule.get("id", ""))
+agent_name = str(agent.get("name", "Manager"))
+
+query = f'rule.id: "{rule_id}" AND agent.name: "{agent_name}"'
+encoded_query = urllib.parse.quote(query, safe=":.-")
+
+dashboard_url = (
+    "https://127.0.0.1:8443/app/data-explorer/discover#?"
+    "_a=(discover:(columns:!(_source),isDirty:!f,sort:!()),"
+    "metadata:(indexPattern:'wazuh-alerts-*',view:discover))"
+    "&_g=(filters:!(),refreshInterval:(pause:!t,value:0),"
+    "time:(from:now-7d,to:now))"
+    "&_q=(filters:!(),query:(language:kuery,query:'"
+    + encoded_query + "'))"
+)
+```
+
+This dynamically builds a query such as `rule.id: "5712" AND agent.name: "ebpracticelab-u"`, rather than hardcoding one alert's rule ID.
+
+Next, I changed the Discord webhook payload to include an **embed with a clickable title** while preserving the existing message:
+
+```python
+payload = {
+    "content": message[:1900],
+    "embeds": [
+        {
+            "title": "View Alert in Wazuh Discover",
+            "url": dashboard_url
+        }
+    ],
+    "allowed_mentions": {"parse": []}
+}
+```
+
+The complete updated source is available in **[the `custom-discord` integration script](scripts/custom-discord)**.
+
+### Validate the updated integration
+
+After saving the changes in Nano, I checked the script for Python syntax errors:
+
+```bash
+sudo python3 -c "import ast; ast.parse(open('/var/ossec/integrations/custom-discord').read()); print('Python syntax OK')"
+```
+
+The syntax check returned `Python syntax OK`. I then repeated the controlled SSH authentication-failure test described in **Section 8**. Wazuh generated another **rule 5712, level-10** alert, which arrived in Discord with the new **View Alert in Wazuh Discover** link.
+
+**Discord notification with the clickable Discover link:**
+
+![Live Wazuh level-10 SSH alert posted to Discord with View Alert in Wazuh Discover link](screenshots/21-discord-alert-with-discover-link.png)
+
+When I clicked the link, Discord presented its normal **Leaving Discord** confirmation, showing the destination URL.
+
+<details>
+<summary>View link-opening confirmation and filtered Discover results (2 screenshots)</summary>
+
+**Discord's outbound-link confirmation:**
+
+![Discord Leaving Discord confirmation for the localhost Wazuh Discover link](screenshots/23-discord-link-opened-in-browser.png)
+
+**Wazuh Discover opened with the matching query applied:**
+
+![Wazuh Discover prefiltered to rule 5712 and agent ebpracticelab-u, with three matching hits](screenshots/22-discover-filtered-alert-results.png)
+
+</details>
+
+The Discover screenshot shows `rule.id: "5712" AND agent.name: "ebpracticelab-u"`, a **Last 7 days** time range, and **three matching hits**, including the newly generated alert.
+
+**Result:** The Discord notification now provides a working investigation pivot into a prefiltered Discover search. This is **not a unique document-level link**: several alerts with the same rule and agent can appear in the time window.
+
+**Lab access scope:** The URL uses `https://127.0.0.1:8443`, matching the existing VirtualBox port forwarding on my Windows host. It works from that host; access from another device would require a separately configured, reachable dashboard address.
+
+## 10. Lessons learned
 
 - A webhook makes it straightforward to deliver Wazuh notifications into a dedicated communication channel without deploying a full ticketing platform.
 - **Network/webhook connectivity**, **integration-script execution**, **Wazuh alert generation**, and **automatic alert delivery** are separate stages that must be tested individually.
 - The end-to-end SSH test produced two separate level-10 correlation alerts (`5712` and `5551`), confirming that the existing `<level>10</level>` integration threshold operated as configured.
 - A threshold of **10+** limits forwarded alerts to higher rule levels, but lower-severity alerts may also be valuable in an investigation.
 - **Discord is currently an alert inbox and manual triage workspace**, not a complete ticketing system. Automated case ownership, status tracking, and SLA reporting were not implemented in this lab.
+- Adding a **filtered Discover link** to Discord notifications reduced the manual steps required to find related alerts while preserving the original alert-forwarding behavior.
 
 ---
 
