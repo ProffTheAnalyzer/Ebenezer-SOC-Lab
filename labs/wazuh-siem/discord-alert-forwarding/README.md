@@ -17,7 +17,6 @@
 - Configure Wazuh to forward alerts at **rule level 10 and above**.
 - Validate a manually invoked integration test, an automatic test notification, and live Wazuh SSH/PAM correlation alerts.
 - Restrict the alert channel to authorized members.
-- Keep the Discord webhook URL **out of the public GitHub repository**.
 
 ## Environment and data flow
 
@@ -86,7 +85,7 @@ This protects the alert feed from other server members who have not been granted
 
 From the `#wazuh-alerts` channel settings, I opened **Integrations → Webhooks** and created a webhook associated with the channel. The webhook was renamed **Wazuh** in the screenshots.
 
-A Discord webhook URL acts as a **secret posting credential**: anyone who has the complete URL may be able to send messages to that channel. I copied it for local configuration and **did not include the live value** in this public-facing write-up.
+A Discord webhook URL acts as a **secret posting credential**: anyone who has the complete URL may be able to send messages to that channel.
 
 <details>
 <summary>View webhook configuration screenshots (3)</summary>
@@ -145,7 +144,7 @@ With webhook connectivity established, I created a custom integration script at:
 /var/ossec/integrations/custom-discord
 ```
 
-I then added an integration block to the **Wazuh manager's** `/var/ossec/etc/ossec.conf` configuration. The documentation below intentionally substitutes a placeholder for the real webhook URL:
+I then added an integration block to the **Wazuh manager's** `/var/ossec/etc/ossec.conf` configuration. The XML config identifies the integration and its level threshold; the separate Python executable performs the alert formatting and HTTP delivery. The documentation below uses a placeholder rather than the real webhook URL:
 
 ```xml
 <integration>
@@ -196,8 +195,6 @@ Paste the Python source, press **Ctrl+O → Enter** to save, then **Ctrl+X** to 
 5. Sends an HTTP **POST** with a JSON body to Discord, using a 15-second timeout, and reports the HTTP status or a failure.
 
 The payload explicitly sets `allowed_mentions` to an empty list, helping prevent alert content from pinging Discord users or roles. The script does **not** implement the level-10 filter itself; **`<level>10</level>` in `ossec.conf`** controls which Wazuh alerts invoke the integration.
-
-**Security:** The webhook is still a credential even though it is absent from the script. Keep its value out of public screenshots and version control, protect the manager configuration that stores it, and avoid printing the complete URL. The manual test also passes the URL as a command-line argument; on shared systems, command-line arguments may be temporarily visible to other local users or administrators. For a personal lab this is a useful demonstration, but production integrations should use a suitable secret-management mechanism and least-privilege access.
 
 
 ### Restart the Wazuh manager
@@ -279,7 +276,7 @@ I subsequently received a test alert **through the Wazuh integration**, rather t
 
 To confirm that actual Wazuh detections (not only synthetic test alerts) were forwarded, I simulated repeated failed SSH authentication attempts **against my own Ubuntu lab VM** using a deliberately nonexistent username. I ran the commands in the Ubuntu **Bash** terminal, not Windows PowerShell.
 
-First, I verified a single attempt reached the SSH password authentication stage. The server's SSH host key needed to be accepted on the test client before authentication events could be generated. On this lab host, I checked the host-key fingerprint independently before trusting it, and kept a separate known-hosts file for the test.
+First, I verified a single attempt reached the SSH password authentication stage. Earlier attempts stopped at **`Host key verification failed`**, before password authentication. I used SSH's `accept-new` option and a dedicated known-hosts file for this local lab test; after the server key was recorded, the test reached the password prompt and produced `Invalid user` and `Failed password` events. `accept-new` automatically records a previously unseen host key, but does not independently establish the server's identity.
 
 ```bash
 ssh -o StrictHostKeyChecking=accept-new \
@@ -337,7 +334,6 @@ During initial testing, level-10 alerts were generated but Discord received noth
 - The end-to-end SSH test produced two separate level-10 correlation alerts (`5712` and `5551`), confirming that the existing `<level>10</level>` integration threshold operated as configured.
 - A threshold of **10+** limits forwarded alerts to higher rule levels, but lower-severity alerts may also be valuable in an investigation.
 - **Discord is currently an alert inbox and manual triage workspace**, not a complete ticketing system. Automated case ownership, status tracking, and SLA reporting were not implemented in this lab.
-- Keeping `#wazuh-alerts` private limits visibility to authorized Discord members; the webhook and any sensitive alert fields still need appropriate protection.
 
 ---
 
