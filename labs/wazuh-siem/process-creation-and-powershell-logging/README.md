@@ -164,3 +164,8 @@ I created a private `#wazuh-alerts` channel, configured a Python `custom-discord
 ---
 
 **Security and privacy note:** Script Block Logging and command-line auditing can capture sensitive values passed as arguments or entered in scripts. Consider log access controls, retention, and credential hygiene before enabling these settings outside a personal test environment.
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

@@ -34,3 +34,8 @@ The original portfolio also includes an [About page](ABOUT.md) and [Home page co
 ## Original public website
 
 [EB Practice Lab](https://www.ebpracticelab.org/)
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

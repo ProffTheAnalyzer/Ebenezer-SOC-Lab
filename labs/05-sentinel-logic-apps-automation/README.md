@@ -86,3 +86,8 @@ I need to practice some more, but I wanted to get initial hands-on experience ab
 ---
 
 [Back to portfolio index](../../README.md)
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

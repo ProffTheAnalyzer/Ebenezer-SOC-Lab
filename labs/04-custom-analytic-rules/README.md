@@ -102,3 +102,8 @@ Initially, I need some rapid alerts so I created some custom alerts for browser 
 ---
 
 [Back to portfolio index](../../README.md)
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

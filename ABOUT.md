@@ -43,3 +43,8 @@ Analysis & Automation
 - AWS Certified Solutions Architect- Associate
 
 [Portfolio index](README.md)
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

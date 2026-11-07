@@ -207,3 +207,8 @@ With the Wazuh server, Windows agent, and initial event collection working, I co
 - [Wazuh Quickstart](https://documentation.wazuh.com/current/quickstart.html)
 
 [Back to SOC Lab portfolio](../../README.md)
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

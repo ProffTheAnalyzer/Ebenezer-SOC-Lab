@@ -105,3 +105,8 @@ The analysis revealed a sophisticated, multi-stage redirection scheme, designed 
 ---
 
 [Back to portfolio index](../../README.md)
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.

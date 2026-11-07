@@ -342,3 +342,8 @@ During initial testing, level-10 alerts were generated but Discord received noth
 - [Wazuh — External API integration](https://documentation.wazuh.com/current/user-manual/manager/integration-with-external-apis.html)
 - [Wazuh — Integration configuration reference](https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/integration.html)
 - [Discord — Intro to Webhooks](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+
+---
+
+**Cyber Profezzor — YouTube Channel**  
+Explore my cybersecurity investigations, SOC labs, and hands-on security tutorials.
